@@ -17,12 +17,12 @@ namespace TechStore1.Controllers
 
         private readonly List<Producto> _productos = new()
         {
-            new Producto { Id = 1, Nombre = "Laptop Pro X", Descripcion = "Core i7, 16GB RAM, 512GB SSD", Precio = 1200.00m, Categoria = "Laptops", Imagen = "laptop.png", Stock = 10, Estado = true },
-            new Producto { Id = 2, Nombre = "Smartphone Z", Descripcion = "Pantalla OLED, 128GB, 5G", Precio = 800.00m, Categoria = "Smartphones", Imagen = "smartphone.png", Stock = 20, Estado = true },
-            new Producto { Id = 3, Nombre = "Auriculares Inalámbricos", Descripcion = "Cancelación de ruido act.", Precio = 150.00m, Categoria = "Accesorios", Imagen = "headphones.png", Stock = 50, Estado = true },
-            new Producto { Id = 4, Nombre = "Monitor 4K 27", Descripcion = "Monitor IPS para diseño", Precio = 350.00m, Categoria = "Monitores", Imagen = "monitor.png", Stock = 15, Estado = true },
-            new Producto { Id = 5, Nombre = "Laptop Lite", Descripcion = "Core i5, 8GB RAM, 256GB SSD", Precio = 800.00m, Categoria = "Laptops", Imagen = "laptop-lite.png", Stock = 25, Estado = true },
-            new Producto { Id = 6, Nombre = "Teclado Mecánico", Descripcion = "Switches RGB y blue", Precio = 90.00m, Categoria = "Accesorios", Imagen = "keyboard.png", Stock = 30, Estado = true }
+            new Producto { Id = 1, Nombre = "Laptop Pro X", Descripcion = "Core i7, 16GB RAM, 512GB SSD", Precio = 1200.00m, Categoria = "Laptops", Imagen = "novabook-pro-14.jpg", Stock = 10, Estado = true },
+            new Producto { Id = 2, Nombre = "Smartphone G", Descripcion = "Pantalla OLED, 128GB, 5G", Precio = 800.00m, Categoria = "Smartphones", Imagen = "pixelwave-x1.jpg", Stock = 20, Estado = true },
+            new Producto { Id = 3, Nombre = "Auriculares Inalámbricos", Descripcion = "Cancelación de ruido act.", Precio = 150.00m, Categoria = "Accesorios", Imagen = "sonicpulse-anc.jpg", Stock = 50, Estado = true },
+            new Producto { Id = 4, Nombre = "Monitor 4K 27", Descripcion = "Monitor IPS para diseño", Precio = 350.00m, Categoria = "Monitores", Imagen = "visiondock-27.jpg", Stock = 15, Estado = true },
+            new Producto { Id = 5, Nombre = "Mouse gamer RGB", Descripcion = "LIGHTSYNC RGB personalizable", Precio = 80.00m, Categoria = "Accesorios", Imagen = "gamecore-m5.jpg", Stock = 25, Estado = true },
+            new Producto { Id = 6, Nombre = "Teclado Mecánico", Descripcion = "Switches RGB y blue", Precio = 90.00m, Categoria = "Accesorios", Imagen = "hyperstrike-k7.jpg", Stock = 30, Estado = true }
         };
 
         public IActionResult Index()

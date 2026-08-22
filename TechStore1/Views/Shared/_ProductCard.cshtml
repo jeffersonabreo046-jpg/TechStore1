@@ -1,6 +1,10 @@
 @model TechStore1.Models.Producto
 
 <div class="card h-100 shadow-sm border-0">
+    <img src="@Url.Content("~/images/" + Model.Imagen)"
+         alt="@Model.Nombre"
+         class="card-img-top"
+         style="height: 180px; object-fit: cover;" />
     <div class="card-body text-center">
         <div class="mb-3">
             <span class="badge bg-primary">@Model.Categoria</span>
