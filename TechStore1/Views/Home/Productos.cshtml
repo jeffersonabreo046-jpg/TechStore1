@@ -1,0 +1,33 @@
+@model List<TechStore1.Models.Producto>
+@{
+    ViewData["Title"] = "Catálogo de Productos";
+    var categorias = ViewBag.Categorias as List<TechStore1.Models.Categoria>;
+}
+
+<div class="container py-4">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Catálogo de Productos</h1>
+        <p class="lead text-muted">Descubre la tecnología de punta que tenemos para ti.</p>
+    </div>
+
+    @if (categorias != null && categorias.Any())
+    {
+        <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            @foreach (var cat in categorias)
+            {
+                <span class="badge bg-secondary px-3 py-2 fs-6">
+                    <i class="@cat.Icono me-1"></i>@cat.Nombre
+                </span>
+            }
+        </div>
+    }
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @foreach (var producto in Model)
+        {
+            <div class="col">
+                <partial name="_ProductCard" model="producto" />
+            </div>
+        }
+    </div>
+</div>

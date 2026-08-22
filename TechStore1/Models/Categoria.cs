@@ -1,4 +1,4 @@
-﻿namespace TechStore.Models
+namespace TechStore1.Models
 {
     public class Categoria
     {

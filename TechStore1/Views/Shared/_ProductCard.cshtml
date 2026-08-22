@@ -1,0 +1,23 @@
+@model TechStore1.Models.Producto
+
+<div class="card h-100 shadow-sm border-0">
+    <div class="card-body text-center">
+        <div class="mb-3">
+            <span class="badge bg-primary">@Model.Categoria</span>
+        </div>
+        <h5 class="card-title fw-bold">@Model.Nombre</h5>
+        <p class="card-text text-muted small">@Model.Descripcion</p>
+        <h6 class="text-success fw-bold">$@Model.Precio.ToString("0.00")</h6>
+        @if (Model.Stock > 0)
+        {
+            <p class="text-success small mb-0">Stock: @Model.Stock</p>
+        }
+        else
+        {
+            <p class="text-danger small mb-0">Agotado</p>
+        }
+    </div>
+    <div class="card-footer bg-white border-0 text-center pb-3">
+        <button class="btn btn-primary btn-sm w-100 shadow-sm fw-semibold">Comprar</button>
+    </div>
+</div>
