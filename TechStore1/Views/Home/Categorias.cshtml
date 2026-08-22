@@ -1,0 +1,35 @@
+@model IEnumerable<TechStore1.Models.Categoria>
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<section class="container py-5">
+    <header class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Explora nuestras categorías</h1>
+        <p class="text-muted">Encuentra productos tecnológicos según lo que necesitas.</p>
+    </header>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+            @foreach (var categoria in Model)
+            {
+                <div class="col">
+                    <article class="card h-100 border-0 shadow-sm ts-category-card">
+                        <div class="card-body text-center">
+                            <div class="ts-category-icon">
+                                <i class="@categoria.Icono"></i>
+                            </div>
+                            <h3 class="h5 fw-bold mt-3">@categoria.Nombre</h3>
+                            <p class="card-text text-muted small">@categoria.Descripcion</p>
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-muted">No hay categorías disponibles por el momento.</p>
+    }
+</section>

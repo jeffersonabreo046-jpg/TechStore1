@@ -1,47 +1,85 @@
-﻿@{
+﻿@model IEnumerable<TechStore1.Models.Producto>
+@{
     ViewData["Title"] = "Inicio";
 }
 
-<!--BANNER-->
-<div class="p-5 mb-5 rounded-4 text-white shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
-    <div class="row align-items-center py-3">
-        <div class="col-12 text-center">
-          
-            <h1 class="display-4 fw-bold text-white mb-3">
-                Compra y Arma tu PC con los mejores accesorios del mercado!
-            </h1>
-            <p class="fs-5 text-light opacity-75 mb-4 col-lg-8 mx-auto">
-                Componentes de gama alta, laptops, accesorios y servicio técnico especializado. Todo lo que tu setup necesita para funcionar sin problemas 
-            </p>
-            <div class="d-flex flex-wrap gap-3 justify-content-center">
-                <a class="btn btn-primary btn-lg px-4 fw-semibold" asp-controller="Home" asp-action="Productos">
-                    <i class="bi bi-bag-check me-2"></i>Ver Productos
-                </a>
-            </div>
+<!-- HERO / BIENVENIDA -->
+<section class="ts-hero">
+    <div class="container text-center py-5">
+        <h1 class="display-5 fw-bold">Tecnología para cada idea</h1>
+        <p class="lead text-muted mx-auto" style="max-width: 720px;">
+            En TechStore encontrarás productos tecnológicos para el estudio, el trabajo,
+            la creatividad y el entretenimiento. Seleccionamos cada equipo para que
+            siempre tengas la mejor herramienta a tu alcance.
+        </p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center my-4">
+            <a class="btn btn-primary px-4 fw-semibold" asp-controller="Home" asp-action="Productos">
+                <i class="bi bi-bag-check me-2"></i>Ver productos
+            </a>
+            <a class="btn btn-outline-secondary px-4 fw-semibold" asp-controller="Home" asp-action="Categorias">
+                <i class="bi bi-grid me-2"></i>Explorar categorías
+            </a>
+        </div>
+        <div class="ts-hero-icons">
+            <span>💻</span>
+            <span>📱</span>
+            <span>🎧</span>
         </div>
     </div>
-</div>
+</section>
 
-<div class="row g-4 text-center">
-    <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-            <div class="fs-1 text-primary mb-2"><i class="bi bi-truck"></i></div>
-            <h5 class="fw-bold text-dark">Envíos a todo el país</h5>
-            <p class="text-muted small mb-0">Entregas rapidas y seguras en los 14 departamentos de El Salvador</p>
+<!-- BANNERS TECNOLÓGICOS -->
+<section class="container py-4">
+    <h2 class="h4 fw-bold text-center mb-4">Encuentra tecnología para tu día a día</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <article class="ts-feature">
+                <div class="ts-feature-icon">💻</div>
+                <h3 class="h5 fw-bold">Estudio y trabajo</h3>
+                <p class="text-muted small mb-0">Laptops y equipos para ser productivo donde estés.</p>
+            </article>
+        </div>
+        <div class="col-md-4">
+            <article class="ts-feature">
+                <div class="ts-feature-icon">📱</div>
+                <h3 class="h5 fw-bold">Conectividad y movilidad</h3>
+                <p class="text-muted small mb-0">Smartphones y accesorios para mantenerte conectado.</p>
+            </article>
+        </div>
+        <div class="col-md-4">
+            <article class="ts-feature">
+                <div class="ts-feature-icon">🎧</div>
+                <h3 class="h5 fw-bold">Audio y entretenimiento</h3>
+                <p class="text-muted small mb-0">Auriculares y sonido para disfrutar tu tiempo libre.</p>
+            </article>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-            <div class="fs-1 text-primary mb-2"><i class="bi bi-shield-check"></i></div>
-            <h5 class="fw-bold text-dark">Garantía Local</h5>
-            <p class="text-muted small mb-0">Atención directa, repuestos genuinos y soporte tecnico especializado</p>
+</section>
+
+<!-- PRODUCTOS DESTACADOS -->
+<section class="container py-4">
+    <h2 class="h4 fw-bold text-center mb-2">Productos destacados</h2>
+    <p class="text-center text-muted mb-4">Una selección de nuestro catálogo para empezar a explorar.</p>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            @foreach (var producto in Model)
+            {
+                <div class="col">
+                    <partial name="_ProductCard" model="producto" />
+                </div>
+            }
         </div>
+    }
+    else
+    {
+        <p class="text-center text-muted">No hay productos destacados disponibles por el momento.</p>
+    }
+
+    <div class="text-center mt-4">
+        <a class="btn btn-primary px-4 fw-semibold" asp-controller="Home" asp-action="Productos">
+            <i class="bi bi-arrow-right-circle me-2"></i>Ver catálogo completo
+        </a>
     </div>
-    <div class="col-md-4">
-        <div class="p-4 border rounded-4 bg-white shadow-sm h-100">
-            <div class="fs-1 text-primary mb-2"><i class="bi bi-tools"></i></div>
-            <h5 class="fw-bold text-dark">Ensamblaje y Mantenimiento</h5>
-            <p class="text-muted small mb-0">Por la compra de un repuesto o accesorio de PC/Laptop la instalacion del producto es totalmente gratis adicionalmente te brindamos un mantenimiento por la confianza</p>
-        </div>
-    </div>
-</div>
+</section>

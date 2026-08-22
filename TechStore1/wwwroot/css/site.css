@@ -236,3 +236,74 @@ a {
     border-radius: 14px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
+
+/* Integrante 3: Inicio y Categorías */
+
+.ts-hero {
+    background-color: var(--ts-surface);
+    border: 1px solid var(--ts-border);
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+}
+
+.ts-hero-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+.ts-feature {
+    background-color: var(--ts-surface);
+    border: 1px solid var(--ts-border);
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    height: 100%;
+    text-align: center;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+    .ts-feature:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(13, 148, 136, 0.12);
+    }
+
+.ts-feature-icon {
+    font-size: 2.25rem;
+    margin-bottom: .75rem;
+}
+
+.ts-category-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+    .ts-category-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(13, 148, 136, 0.12);
+    }
+
+.ts-category-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 14px;
+    background-color: rgba(13, 148, 136, 0.10);
+    color: #0d9488;
+    font-size: 1.75rem;
+}
+
+@media (max-width: 768px) {
+    .ts-hero-icons {
+        font-size: 1.75rem;
+        gap: .75rem;
+    }
+
+    .ts-hero {
+        margin-top: .5rem;
+    }
+}
