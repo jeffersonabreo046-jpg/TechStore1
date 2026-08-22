@@ -1,0 +1,238 @@
+/* =========================================================
+   TECHSTORE — Design tokens (Light / Minimal Tech Concept)
+   ========================================================= */
+:root {
+    --ts-bg: #f8fafc; /*Fondo base*/
+    --ts-surface: #ffffff; /*Navbar, Cards, Footer*/
+    --ts-surface-alt: #f1f5f9; /*Superficies secundarias*/
+    --ts-accent: #0d9488; /*Cian Técnico*/
+    --ts-accent-light: #14b8a6; /*Cian*/
+    --ts-accent-2: #f97316; /*Naranja energético para CTAs*/
+    --ts-text: #0f172a; /*Texto principal*/
+    --ts-text-muted: #64748b; /*Texto secundario*/
+    --ts-border: #e2e8f0; /*Bordes limpios*/
+
+    --ts-font-display: 'Space Grotesk', sans-serif;
+    --ts-font-body: 'Inter', sans-serif;
+    --ts-font-mono: 'JetBrains Mono', monospace;
+}
+
+html, body {
+    background-color: var(--ts-bg);
+    color: var(--ts-text);
+    font-family: var(--ts-font-body);
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6, .ts-brand {
+    font-family: var(--ts-font-display);
+    letter-spacing: -0.01em;
+    color: var(--ts-text);
+}
+
+a {
+    text-decoration: none;
+}
+
+.ts-mono {
+    font-family: var(--ts-font-mono);
+}
+
+/*NAVBAR*/
+.ts-navbar {
+    background-color: rgba(255, 255, 255, 0.90);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--ts-border);
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+}
+
+.ts-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--ts-text) !important;
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+.ts-brand-bracket {
+    color: var(--ts-accent);
+    font-family: var(--ts-font-mono);
+    font-weight: 600;
+}
+
+.ts-brand-accent {
+    color: var(--ts-accent);
+}
+
+.navbar-nav .nav-link {
+    color: var(--ts-text-muted);
+    font-weight: 500;
+    font-size: .95rem;
+    padding: .5rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    transition: color .15s ease;
+}
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+        color: var(--ts-text);
+    }
+
+        .navbar-nav .nav-link.active .ts-num {
+            color: var(--ts-accent);
+        }
+
+.ts-num {
+    font-family: var(--ts-font-mono);
+    font-size: .75rem;
+    color: var(--ts-text-muted);
+}
+
+.ts-status {
+    font-family: var(--ts-font-mono);
+    font-size: .75rem;
+    color: var(--ts-text-muted);
+    display: inline-flex;
+    align-items: center;
+}
+
+.ts-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #10b981;
+    display: inline-block;
+    margin-right: .4rem;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    animation: ts-pulse 2s infinite;
+}
+
+@keyframes ts-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .4;
+    }
+}
+
+.navbar-toggler {
+    border: 1px solid var(--ts-border);
+}
+
+/*CONTENIDO*/
+.ts-main {
+    min-height: calc(100vh - 380px);
+}
+
+/*FOOTER*/
+.ts-footer {
+    background-color: var(--ts-surface);
+    border-top: 1px solid var(--ts-border);
+    margin-top: 4rem;
+}
+
+.ts-brand-footer {
+    margin-bottom: .5rem;
+}
+
+.ts-footer-text {
+    color: var(--ts-text-muted);
+    font-size: .9rem;
+    max-width: 320px;
+}
+
+.ts-footer-heading {
+    font-family: var(--ts-font-mono);
+    text-transform: uppercase;
+    font-size: .75rem;
+    letter-spacing: .08em;
+    color: var(--ts-accent);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.ts-footer-links list-unstyled {
+    padding-left: 0;
+}
+
+.ts-footer-links li {
+    margin-bottom: .6rem;
+    color: var(--ts-text-muted);
+    font-size: .9rem;
+}
+
+.ts-footer-links a {
+    color: var(--ts-text-muted);
+    font-size: .9rem;
+    transition: color .15s ease;
+}
+
+    .ts-footer-links a:hover {
+        color: var(--ts-text);
+    }
+
+.ts-social {
+    display: flex;
+    gap: .75rem;
+}
+
+    .ts-social a {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background-color: var(--ts-surface-alt);
+        color: var(--ts-text);
+        border: 1px solid var(--ts-border);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .15s ease;
+    }
+
+        .ts-social a:hover {
+            background-color: var(--ts-text);
+            color: #ffffff;
+            border-color: var(--ts-text);
+        }
+
+.ts-footer-rule {
+    border-color: var(--ts-border);
+    margin: 2rem 0 1.5rem;
+}
+
+.ts-footer-bottom {
+    color: var(--ts-text-muted);
+    font-size: .82rem;
+    gap: .5rem;
+}
+
+/*UTILIDADES COMPARTIDAS*/
+.ts-btn-primary {
+    background-color: var(--ts-text);
+    border: none;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: .65rem 1.4rem;
+    transition: transform .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+
+    .ts-btn-primary:hover {
+        background-color: var(--ts-accent);
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(13, 148, 136, 0.2);
+    }
+
+.ts-card {
+    background-color: var(--ts-surface);
+    border: 1px solid var(--ts-border);
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}

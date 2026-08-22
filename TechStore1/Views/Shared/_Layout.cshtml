@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TechStore</title>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+    <!--CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg ts-navbar sticky-top">
+            <div class="container">
+                <a class="navbar-brand ts-brand" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-chevron-contract"></i> TechStore <span class="text-sm-center"></span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#tsNavbar" aria-controls="tsNavbar" aria-expanded="false" aria-label="Alternar navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="tsNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index">
+                                <span class="ts-num"></span> Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Productos">
+                                <span class="ts-num"></span> Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Categorias">
+                                <span class="ts-num"></span> Categorías
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contacto">
+                                <span class="ts-num"></span> Contactanos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Privacy">
+                                <span class="ts-num"></span> Acerca de
+                            </a>
+                        </li>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container ts-main my-4">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="ts-footer pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                    <!--Marca y Descripcion -->
+                <div class="col-lg-4 col-md-6">
+                    <a class="ts-brand ts-brand-footer" asp-controller="Home" asp-action="Index">
+                            <i class="bi bi-chevron-contract"></i></i>
+                    </a>
+                    <div class="ts-footer-text mt-3">
+                        <p class="fw-semibold mb-2">Tecnología pensada para vos.</p>
+                        <p class="mb-2">
+                            Venta de equipos, componentes, periféricos y accesorios seleccionados con criterio técnico.
+                        </p>
+                        <p class="mb-0">
+                            Se brinda mantenimiento y reparación de laptops y desktops.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Navegacio -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="ts-footer-heading">Navegacio</h6>
+                    <ul class="list-unstyled ts-footer-links">
+                        <li><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+                        <li><a asp-controller="Home" asp-action="Productos">Productos</a></li>
+                        <li><a asp-controller="Home" asp-action="Categorias">Categorías</a></li>
+                        <li><a asp-controller="Home" asp-action="Contacto">Contáctanos</a></li>
+                        <li><a asp-controller="Home" asp-action="Privacy">Acerca de nosotros</a></li>
+                    </ul>
+                </div>
+
+                <!--Contacto-->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="ts-footer-heading">Contactos para mayor informacion o cotizaciones </h6>
+                    <ul class="list-unstyled ts-footer-links">
+                        <li><i class="bi bi-geo-alt me-1"></i>El Salvador</li>
+                        <li><i class="bi bi-envelope me-1"></i> solucionesv@techstore.com</li>
+                        <li><i class="bi bi-telephone me-1"></i> +503 2222-0000</li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="ts-footer-heading">Síguenos en tu red Social favorita</h6>
+                    <div class="ts-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-tiktok"></i></a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <hr class="ts-footer-rule" />
+
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center ts-footer-bottom">
+                <p class="mb-0">&copy; 2026 TechStore. Todos los derechos reservados.</p>
+                <p class="mb-0">Proyecto académico Universidad Evangelica De El Salvador</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
