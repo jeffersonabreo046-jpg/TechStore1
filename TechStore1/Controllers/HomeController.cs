@@ -42,7 +42,17 @@ namespace TechStore1.Controllers
             return View(_categorias);
         }
 
-        public IActionResult Privacy()
+		public IActionResult Contactenos()
+		{
+			return View();
+		}
+
+		public IActionResult AcercaDeNosotros()
+		{
+			return View();
+		}
+
+		public IActionResult Privacy()
         {
             return View();
         }
