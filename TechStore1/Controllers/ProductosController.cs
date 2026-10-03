@@ -70,12 +70,12 @@ namespace TechStore1.Controllers
                 return View(producto);
             }
 
-            if (await _productoService.ObtenerPorIdAsync(id) == null)
+            var editado = await _productoService.EditarAsync(producto);
+            if (!editado)
             {
                 return NotFound();
             }
 
-            await _productoService.EditarAsync(producto);
             TempData["Mensaje"] = "Producto actualizado correctamente.";
             return RedirectToAction(nameof(Index));
         }

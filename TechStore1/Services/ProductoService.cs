@@ -34,10 +34,24 @@ namespace TechStore1.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditarAsync(Producto producto)
+        public async Task<bool> EditarAsync(Producto producto)
         {
-            _context.Productos.Update(producto);
+            var productoExistente = await _context.Productos.FindAsync(producto.Id);
+            if (productoExistente == null)
+            {
+                return false;
+            }
+
+            productoExistente.Nombre = producto.Nombre;
+            productoExistente.Descripcion = producto.Descripcion;
+            productoExistente.Precio = producto.Precio;
+            productoExistente.Imagen = producto.Imagen;
+            productoExistente.Stock = producto.Stock;
+            productoExistente.Estado = producto.Estado;
+            productoExistente.CategoriaId = producto.CategoriaId;
+
             await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> EliminarAsync(int id)
