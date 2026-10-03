@@ -7,7 +7,7 @@
          style="height: 180px; object-fit: cover;" />
     <div class="card-body text-center">
         <div class="mb-3">
-            <span class="badge bg-primary">@Model.Categoria</span>
+            <span class="badge bg-primary">@(Model.Categoria?.Nombre ?? "Sin categoría")</span>
         </div>
         <h5 class="card-title fw-bold">@Model.Nombre</h5>
         <p class="card-text text-muted small">@Model.Descripcion</p>

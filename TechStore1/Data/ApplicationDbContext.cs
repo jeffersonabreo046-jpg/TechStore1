@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 using TechStore1.Models;
-using TechStore1.Models.TechStore1.Models;
 
 namespace TechStore1.Data
 {
