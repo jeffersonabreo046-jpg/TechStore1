@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using TechStore1.Models;
+using TechStore1.Models.TechStore1.Models;
 
 namespace TechStore1.Controllers
 {
