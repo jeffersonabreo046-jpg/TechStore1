@@ -1,0 +1,65 @@
+@model TechStore1.Models.Producto
+
+@{
+    ViewData["Title"] = "Eliminar Producto";
+}
+
+<div class="container py-4">
+
+    <h1 class="fw-bold mb-4 text-danger">Eliminar Producto</h1>
+
+    <div class="card shadow-sm border-danger">
+        <div class="card-body">
+
+            <h4 class="card-title text-danger mb-3">
+                ¿Está seguro de eliminar este producto?
+            </h4>
+            <p class="text-muted mb-4">
+                Esta acción eliminará el producto de forma permanente.
+            </p>
+
+            <dl class="row mb-4">
+                <dt class="col-sm-3 fw-semibold">Nombre</dt>
+                <dd class="col-sm-9">@Model.Nombre</dd>
+
+                <dt class="col-sm-3 fw-semibold">Descripción</dt>
+                <dd class="col-sm-9">@Model.Descripcion</dd>
+
+                <dt class="col-sm-3 fw-semibold">Precio</dt>
+                <dd class="col-sm-9">$@Model.Precio.ToString("0.00")</dd>
+
+                <dt class="col-sm-3 fw-semibold">Categoría</dt>
+                <dd class="col-sm-9">@(Model.Categoria?.Nombre ?? "Sin categoría")</dd>
+
+                <dt class="col-sm-3 fw-semibold">Stock</dt>
+                <dd class="col-sm-9">@Model.Stock</dd>
+
+                <dt class="col-sm-3 fw-semibold">Estado</dt>
+                <dd class="col-sm-9">
+                    @if (Model.Estado)
+                    {
+                        <span class="badge bg-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Inactivo</span>
+                    }
+                </dd>
+            </dl>
+
+            <form asp-action="DeleteConfirmed" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <button type="submit" class="btn btn-danger">
+                    Sí, eliminar
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary ms-1">
+                    Cancelar
+                </a>
+            </form>
+
+        </div>
+    </div>
+
+</div>
