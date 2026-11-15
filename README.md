@@ -2,6 +2,8 @@
 
 ASP.NET Core MVC (.NET 10) + Identity + EF Core (SQL Server LocalDB).
 
+Repositorio: https://github.com/jeffersonabreo046-jpg/TechStore1
+
 ## Ejecutar
 
 ```bash
