@@ -1,10 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using TechStore1.Authorization;
 using TechStore1.Models;
 using TechStore1.Services;
 
 namespace TechStore1.Controllers
 {
+    [Authorize(Policy = AppRoles.GestionProductos)]
     public class ProductosController : Controller
     {
         private readonly IProductoService _productoService;
@@ -80,6 +83,7 @@ namespace TechStore1.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Policy = AppRoles.EliminacionProductos)]
         public async Task<IActionResult> Delete(int id)
         {
             var producto = await _productoService.ObtenerPorIdAsync(id);
@@ -92,6 +96,7 @@ namespace TechStore1.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = AppRoles.EliminacionProductos)]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
