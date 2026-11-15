@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Evidencias generadas por las pruebas E2E y resultados de pruebas
+Evidencias/
+TestResults/

@@ -10,18 +10,34 @@ using TechStore1.Services;
 
 namespace TechStore1.Controllers;
 
-[Authorize(Policy = AppRoles.ConsultaReportes)]
+[Authorize(Roles = AppRoles.AdministradorOVendedor)]
 public class ReportesController : Controller
 {
     private readonly IProductoService _productos;
+    private readonly ILogger<ReportesController> _logger;
 
-    public ReportesController(IProductoService productos)
+    public ReportesController(IProductoService productos, ILogger<ReportesController> logger)
     {
         _productos = productos;
+        _logger = logger;
     }
 
     [HttpGet]
     public async Task<IActionResult> Pdf()
+    {
+        try
+        {
+            return await GenerarPdf();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al generar el reporte PDF de productos");
+            TempData["Error"] = "No se pudo generar el reporte PDF. Intente nuevamente.";
+            return RedirectToAction("Index", "Productos");
+        }
+    }
+
+    private async Task<IActionResult> GenerarPdf()
     {
         var productos = await _productos.ObtenerTodosAsync();
         QuestPDF.Settings.License = LicenseType.Community; // Verifique condiciones de la licencia según su uso.
@@ -84,11 +100,26 @@ public class ReportesController : Controller
         });
 
         var bytes = documento.GeneratePdf();
+        _logger.LogInformation("Reporte PDF generado por {Usuario} con {Cantidad} productos", User.Identity?.Name, productos.Count);
         return File(bytes, "application/pdf", $"TechStore_Productos_{DateTime.Now:yyyyMMdd}.pdf");
     }
 
     [HttpGet]
     public async Task<IActionResult> Excel()
+    {
+        try
+        {
+            return await GenerarExcel();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error al exportar los productos a Excel");
+            TempData["Error"] = "No se pudo generar el archivo Excel. Intente nuevamente.";
+            return RedirectToAction("Index", "Productos");
+        }
+    }
+
+    private async Task<IActionResult> GenerarExcel()
     {
         var productos = await _productos.ObtenerTodosAsync();
         using var libro = new XLWorkbook();
@@ -127,6 +158,7 @@ public class ReportesController : Controller
         hoja.SheetView.FreezeRows(4);
         using var memoria = new MemoryStream();
         libro.SaveAs(memoria);
+        _logger.LogInformation("Reporte Excel generado por {Usuario} con {Cantidad} productos", User.Identity?.Name, productos.Count);
         return File(memoria.ToArray(),
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             $"TechStore_Productos_{DateTime.Now:yyyyMMdd}.xlsx");

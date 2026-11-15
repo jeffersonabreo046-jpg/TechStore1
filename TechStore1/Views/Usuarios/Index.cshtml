@@ -1,0 +1,84 @@
+@model List<TechStore1.Models.UsuarioRolViewModel>
+@{
+    ViewData["Title"] = "Usuarios y roles";
+    var roles = ViewBag.Roles as List<string> ?? new List<string>();
+}
+
+<div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold">Usuarios y roles</h1>
+            <p class="text-muted mb-0">Administración con ASP.NET Core Identity (UserManager / RoleManager)</p>
+        </div>
+        <a asp-action="Create" class="btn btn-primary" id="btn-nuevo-usuario">
+            <i class="bi bi-person-plus"></i> Nuevo usuario
+        </a>
+    </div>
+
+    <partial name="_Alertas" />
+
+    <div class="row g-3 mb-4">
+        @foreach (var rol in roles)
+        {
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="h6 fw-bold mb-1"><i class="bi bi-shield-check me-1"></i>@rol</h2>
+                        <small class="text-muted">
+                            @(rol switch
+                            {
+                                AppRoles.Administrador => "Acceso completo: productos, eliminación, reportes, usuarios y registros.",
+                                AppRoles.Vendedor => "Consultar, agregar y editar productos; generar reportes.",
+                                AppRoles.Cliente => "Únicamente consultar los productos disponibles.",
+                                _ => ""
+                            })
+                        </small>
+                        <p class="mb-0 mt-2"><span class="badge bg-secondary">@Model.Count(u => u.Roles.Contains(rol)) usuarios</span></p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body table-responsive">
+            <table class="table table-hover align-middle" id="tabla-usuarios">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Rol actual</th>
+                        <th style="width: 320px;">Cambiar rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var usuario in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@usuario.Usuario</td>
+                            <td>@(usuario.Email ?? "—")</td>
+                            <td>
+                                @foreach (var r in usuario.Roles)
+                                {
+                                    <span class="badge bg-primary me-1">@r</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="CambiarRol" method="post" class="d-flex gap-2">
+                                    <input type="hidden" name="id" value="@usuario.Id" />
+                                    <select name="rol" class="form-select form-select-sm">
+                                        @foreach (var rol in roles)
+                                        {
+                                            <option value="@rol" selected="@(usuario.Roles.Contains(rol))">@rol</option>
+                                        }
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-outline-primary">Asignar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

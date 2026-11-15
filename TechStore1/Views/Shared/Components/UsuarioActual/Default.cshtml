@@ -1,0 +1,6 @@
+@model (string Nombre, string Rol, string Color)
+
+<span class="nav-link" id="usuario-actual">
+    <i class="bi bi-person-circle me-1"></i>@Model.Nombre
+    <span class="badge @Model.Color ms-1" id="usuario-rol">@Model.Rol</span>
+</span>

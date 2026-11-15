@@ -1,0 +1,60 @@
+@model List<string>
+@{
+    ViewData["Title"] = "Registros del sistema";
+    var archivos = ViewBag.Archivos as List<string> ?? new List<string>();
+    var seleccionado = ViewBag.Seleccionado as string;
+    var nivel = ViewBag.Nivel as string;
+    string ColorFila(string linea) =>
+        linea.Contains("[ERR]") || linea.Contains("[FTL]") ? "text-danger fw-semibold"
+        : linea.Contains("[WRN]") ? "text-warning"
+        : "text-light";
+}
+
+<div class="container py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+        <div>
+            <h1 class="fw-bold mb-0">Registros del sistema (Logging)</h1>
+            <p class="text-muted mb-0">
+                Generados con <code>ILogger</code> + Serilog. Ubicación: <code>@ViewBag.Carpeta</code>
+            </p>
+        </div>
+        <a asp-action="ProbarError" class="btn btn-outline-danger" id="btn-probar-error">
+            <i class="bi bi-bug"></i> Generar error de prueba
+        </a>
+    </div>
+
+    <form method="get" class="row g-2 align-items-end mb-3">
+        <div class="col-md-5">
+            <label class="form-label small mb-1">Archivo</label>
+            <select name="archivo" class="form-select">
+                @foreach (var a in archivos)
+                {
+                    <option value="@a" selected="@(a == seleccionado)">@a</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label small mb-1">Nivel</label>
+            <select name="nivel" class="form-select">
+                <option value="" selected="@(string.IsNullOrEmpty(nivel))">Todos</option>
+                <option value="INF" selected="@(nivel == "INF")">Information</option>
+                <option value="WRN" selected="@(nivel == "WRN")">Warning</option>
+                <option value="ERR" selected="@(nivel == "ERR")">Error</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Filtrar</button>
+        </div>
+    </form>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">No hay registros para mostrar.</div>
+    }
+    else
+    {
+        <p class="small text-muted">Mostrando @Model.Count eventos (más recientes primero).</p>
+        <pre class="bg-dark p-3 rounded small" style="max-height: 600px; overflow: auto; white-space: pre-wrap;" id="contenido-log">@foreach (var linea in Model)
+{<span class="@ColorFila(linea)">@linea</span>@("\n")}</pre>
+    }
+</div>

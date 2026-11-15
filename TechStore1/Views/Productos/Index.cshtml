@@ -9,14 +9,14 @@
     <div class="d-flex gap-2 justify-content-end mb-3">
         <a asp-controller="Reportes"
            asp-action="Pdf"
-           class="btn btn-danger">
-            Descargar PDF
+           class="btn btn-danger" id="btn-pdf">
+            <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
         </a>
 
         <a asp-controller="Reportes"
            asp-action="Excel"
-           class="btn btn-success">
-            Exportar Excel
+           class="btn btn-success" id="btn-excel">
+            <i class="bi bi-file-earmark-excel"></i> Exportar Excel
         </a>
     </div>
 
@@ -34,18 +34,16 @@
         }
     </div>
 
-    @if (TempData["Mensaje"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["Mensaje"]
-        </div>
-    }
+    <partial name="_Alertas" />
+
+    @* View Component *@
+    <vc:resumen-inventario></vc:resumen-inventario>
 
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="table-responsive">
 
-                <table class="table table-hover align-middle">
+                <table class="table table-hover align-middle" id="tabla-productos">
                     <thead class="table-dark">
                         <tr>
                             <th>Nombre</th>
@@ -74,18 +72,7 @@
                                 <td>@producto.Stock</td>
 
                                 <td>
-                                    @if (producto.Estado)
-                                    {
-                                        <span class="badge bg-success">
-                                            Activo
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-danger">
-                                            Inactivo
-                                        </span>
-                                    }
+                                    <partial name="_EstadoBadge" model="producto.Estado" />
                                 </td>
 
                                 <td>

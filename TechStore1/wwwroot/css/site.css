@@ -609,3 +609,8 @@ a {
         flex-wrap: wrap;
     }
 }
+/* Evita que las opciones del menú se partan en dos líneas */
+.ts-navbar .nav-link { white-space: nowrap; }
+@media (min-width: 992px) and (max-width: 1499.98px) {
+    .ts-navbar .navbar-nav .nav-link { padding: .5rem .55rem; font-size: .9rem; }
+}

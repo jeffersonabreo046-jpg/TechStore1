@@ -36,14 +36,7 @@
 
                 <dt class="col-sm-3 fw-semibold">Estado</dt>
                 <dd class="col-sm-9">
-                    @if (Model.Estado)
-                    {
-                        <span class="badge bg-success">Activo</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-danger">Inactivo</span>
-                    }
+                    <partial name="_EstadoBadge" model="Model.Estado" />
                 </dd>
             </dl>
 

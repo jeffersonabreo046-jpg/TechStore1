@@ -1,0 +1,41 @@
+@model TechStore1.ViewComponents.ResumenInventarioModel
+
+<div class="row g-3 mb-4" id="resumen-inventario">
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1"><i class="bi bi-box-seam me-1"></i>Productos</p>
+                <h3 class="fw-bold mb-0">@Model.TotalProductos</h3>
+                <small class="text-success">@Model.ProductosActivos activos</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1"><i class="bi bi-stack me-1"></i>Unidades en stock</p>
+                <h3 class="fw-bold mb-0">@Model.UnidadesEnStock</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1"><i class="bi bi-cash-coin me-1"></i>Valor del inventario</p>
+                <h3 class="fw-bold mb-0">$@Model.ValorInventario.ToString("N2")</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <p class="text-muted small mb-1"><i class="bi bi-exclamation-triangle me-1"></i>Stock bajo (≤ @Model.UmbralStockBajo)</p>
+                <h3 class="fw-bold mb-0 @(Model.ProductosStockBajo.Any() ? "text-danger" : "")">@Model.ProductosStockBajo.Count</h3>
+                @if (Model.ProductosStockBajo.Any())
+                {
+                    <small class="text-muted">@string.Join(", ", Model.ProductosStockBajo)</small>
+                }
+            </div>
+        </div>
+    </div>
+</div>
